@@ -15,7 +15,6 @@ public class ItemMagicoService {
     private ItemMagicoRepository repository;
 
     public ItemMagico cadastrarItemMagico(ItemMagico item) {
-        // Validações adicionais (opcional, já que a entidade já valida)
         if (item.getTipo() == ItemMagico.TipoItem.arma && item.getDefesa() != 0) {
             throw new IllegalArgumentException("Itens do tipo ARMA não podem ter defesa diferente de 0");
         }

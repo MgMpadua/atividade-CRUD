@@ -20,15 +20,12 @@ public class PersonagemService {
     private ItemMagicoService itemMagicoService;
 
     public Personagem cadastrarPersonagem(Personagem personagem, List<Long> itemIds) {
-        // Validações do personagem (força + defesa <= 10, etc.)
         if (personagem.getForcaBase() + personagem.getDefesaBase() > 10) {
             throw new IllegalArgumentException("A soma de força e defesa deve ser no máximo 10");
         }
 
-        // Limpa a lista de itens para evitar persistência de itens enviados indevidamente
         personagem.getItensMagicos().clear();
 
-        // Associa itens mágicos existentes com base nos IDs fornecidos
         if (itemIds != null && !itemIds.isEmpty()) {
             for (Long itemId : itemIds) {
                 ItemMagico item = itemMagicoService.buscarItemPorIdEntity(itemId);
